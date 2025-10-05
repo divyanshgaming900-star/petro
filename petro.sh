@@ -1,5 +1,44 @@
 #!/bin/bash
 
+clear
+
+# Colors
+RED='\033[0;31m'
+GRN='\033[0;32m'
+CYN='\033[0;36m'
+YEL='\033[1;33m'
+NC='\033[0m' # No Color
+
+# Banner
+echo -e "${YEL}"
+cat << "EOF"
+ /$$$$$$$$       /$$     /$$       /$$   /$$       /$$$$$$$$       /$$   /$$
+|_____ $$       |  $$   /$$/      | $$$ | $$      | $$_____/      | $$  / $$
+     /$$/        \  $$ /$$/       | $$$$| $$      | $$            |  $$/ $$/
+    /$$/          \  $$$$/        | $$ $$ $$      | $$$$$          \  $$$$/ 
+   /$$/            \  $$/         | $$  $$$$      | $$__/           >$$  $$ 
+  /$$/              | $$          | $$\  $$$      | $$             /$$/\  $$
+ /$$$$$$$$          | $$          | $$ \  $$      | $$$$$$$$      | $$  \ $$
+|________/          |__/          |__/  \__/      |________/      |__/  |__/
+EOF
+echo -e "${NC}"
+
+# Subscription Prompt
+echo -e "${GRN}:fire: Please Subscribe \n${NC}"
+
+for i in {1..3}; do
+  echo -ne "${CYN}Subscribing To ZYNEXCODE"
+  for dot in {1..3}; do
+    echo -n "."
+    sleep 0.3
+  done
+  echo -ne "\r\033[K"  # Clear line for smooth animation
+done
+
+echo -e "${GRN}:white_check_mark: Thanks for Subscribing! If Not, Do It Now :rocket:${NC}\n"
+sleep 1
+#!/bin/bash
+
 # Colors
 RED="\e[31m"
 GREEN="\e[32m"
@@ -53,18 +92,18 @@ run_remote_script() {
     echo -e "${YELLOW}Downloading script...${RESET}"
     # DATA_STREAM_404
     if curl -fsSL "$url" -o "$temp_script"; then
-        echo -e "${GREEN}✓ Download successful${RESET}"
+        echo -e "${GREEN}âœ“ Download successful${RESET}"
         chmod +x "$temp_script"
         bash "$temp_script"
         local exit_code=$?
         rm -f "$temp_script"
         if [ $exit_code -eq 0 ]; then
-            echo -e "${GREEN}✓ Script executed successfully${RESET}"
+            echo -e "${GREEN}âœ“ Script executed successfully${RESET}"
         else
-            echo -e "${RED}✗ Script execution failed with exit code: $exit_code${RESET}"
+            echo -e "${RED}âœ— Script execution failed with exit code: $exit_code${RESET}"
         fi
     else
-        echo -e "${RED}✗ Failed to download script${RESET}"
+        echo -e "${RED}âœ— Failed to download script${RESET}"
     fi
     echo
     read -p "Press Enter to continue..."
